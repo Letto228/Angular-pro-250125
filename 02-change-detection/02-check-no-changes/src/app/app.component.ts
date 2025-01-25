@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,14 @@ export class AppComponent implements AfterViewChecked {
   title = 'check-no-changes';
   counter = 0;
 
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
   ngAfterViewChecked(): void {
     this.counter += 1;
     
     console.log('Increment', this.counter);
+
+    // this.changeDetectorRef.detectChanges();
   }
 
   onLogTitle() {
