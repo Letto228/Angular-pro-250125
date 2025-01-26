@@ -1,4 +1,4 @@
-import { Component, ApplicationRef } from '@angular/core';
+import { Component, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -8,10 +8,11 @@ import { DataService } from '../data.service';
 export class FirstComponent {
   number = 0;
 
-  constructor(private dataService: DataService, app: ApplicationRef) { 
+  constructor(private dataService: DataService, app: ApplicationRef, cd: ChangeDetectorRef) { 
     this.dataService.data$().subscribe(data => {
       this.number = data;
-      app.tick(); // sync CD by platform service
+      // app.tick(); // sync CD by platform service
+      cd.detectChanges();
     });
   }
 

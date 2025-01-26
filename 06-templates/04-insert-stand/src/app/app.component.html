@@ -6,9 +6,14 @@
   <button (click)="onClickClear()">Clear</button>
 </div>
 
-<div #viewContainer></div>
+<ng-container *ngTemplateOutlet="declaratedTemplateRef; context: {name: 'ngTemplateOutlet'}"></ng-container>
+<ng-container *ngComponentOutlet="component$ | async; injector: componentInjector"></ng-container>
 
-<ng-template #declaratedTemplateRef>
+<!-- <div #viewContainer></div> -->
+<ng-container #viewContainer></ng-container>
+
+<ng-template #declaratedTemplateRef let-userName="name">
+  <h2>{{userName}}</h2>
   <h3>Its template</h3>
   <app-declarated></app-declarated>
 </ng-template>

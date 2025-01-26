@@ -1,4 +1,14 @@
-export function findBigPrime() {
+/// <reference lib="webworker" />
+
+addEventListener('message', () => {
+  // const response = `worker response to ${data}`;
+
+  const response = findBigPrime();
+
+  postMessage(response);
+});
+
+function findBigPrime() {
   let start = Math.floor(Math.random() * 1000000000);
   let is_prime = false;
   while (!is_prime) {
@@ -22,3 +32,4 @@ function test_prime(n: number) {
     return true;
   }
 }
+
